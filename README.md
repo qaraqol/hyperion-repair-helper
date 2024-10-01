@@ -18,7 +18,7 @@ The missing.json file exists in the specified format:
 [{ "start": 330002000, "end": 330002000 }]
 ```
 
-##Setup
+## Setup
 Modify hyp-repair.js
 
 To ensure compatibility with this script, you need to remove the following two lines (found in line #668 and #669) from the hyp-repair.js file:
@@ -56,7 +56,7 @@ Run the script using Bun:
 bun run repair.js
 ```
 
-##What the Script Does
+## What the Script Does
 
 Queue Check: It connects to RabbitMQ to check the specified queue. If there are fewer than 5 messages, the script proceeds to start a repair job.
 Block Repair: The hyp-repair tool is executed with the fill-missing command, using missing.json as the source for block ranges.
@@ -81,7 +81,7 @@ License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-##Tutorial/Guides
+## Tutorial/Guides
 
 Bun Setup: To set up Bun, visit the [Bun documentation](https://bun.sh/docs).
 Hyperion Setup: To set up Hyperion, refer to their official documentation on [Hyperion GitHub](https://github.com/eosrio/Hyperion-History-API).
