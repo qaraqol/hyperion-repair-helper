@@ -21,6 +21,10 @@ const file = Bun.file(`missing.json`);
 const range = await file.json();
 
 async function checkQueueAndRepair() {
+    if (range[0].end > config.end) {
+    console.log("Range finished");
+    return;
+  } else {
   try {
     // Check queue status
     const connection = await amqp.connect({
@@ -50,14 +54,13 @@ async function checkQueueAndRepair() {
     } else if (messageCount >= 5) {
       console.log("Queue is busy. Waiting to retry...");
       setTimeout(checkQueueAndRepair, config.interval);
-    } else if (range.end >= config.end) {
-      console.log("Range Finished");
     }
     await channel.close();
     await connection.close();
   } catch (error) {
     console.error("Error:", error);
   }
+    }
 }
 
 checkQueueAndRepair();
